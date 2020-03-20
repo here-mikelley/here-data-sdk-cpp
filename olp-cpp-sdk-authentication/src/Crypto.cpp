@@ -63,7 +63,7 @@ static uint32_t SHA256_K[SHA256_CONSTANTS_LENGTH] = {
 
 namespace olp {
 namespace authentication {
-auto constexpr kMaxSize = std::numeric_limits<size_t>::max();
+auto constexpr kMaxSize = std::numeric_limits<size_t>::max() / 8;
 
 std::vector<uint8_t> Crypto::hmac_sha256(const std::string& key,
                                          const std::string& message) {
