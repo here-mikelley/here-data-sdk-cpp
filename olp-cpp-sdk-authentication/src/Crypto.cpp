@@ -118,6 +118,13 @@ std::vector<unsigned char> Crypto::sha256(
   auto hashValue = sha256Init();
   std::vector<std::vector<unsigned char> > chucksToProcess;
 
+  // For security reasons restrict size to be less than size_t / 8 
+  // because of calculaitons later
+  if (src.size() > kMaxSize)
+  {
+      return std::vector<unsigned char>();
+  }
+
   auto length = src.size();
   auto chunksCount = length / SHA256_LAST_CHUNK_LENGTH;
   auto lastChunkSize = length % SHA256_LAST_CHUNK_LENGTH;
